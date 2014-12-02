@@ -29,9 +29,14 @@
 			});
 			Stamen_TonerLite.addTo(map);
 
-			var colorScale = d3.scale.linear()
-			    .domain([10,40])
-    			.range(colorbrewer.Reds[3]);
+			var colorScale = function (value) {
+				if (value < 10)
+					return '#fee0d2';
+				else if (value < 20)
+					return '#fc9272';
+				else
+					return '#de2d26';
+			}
 
 			request.then(
 				// success handler
@@ -45,7 +50,7 @@
 								fillColor: feature_color,
 							    "weight": 1,
 							    "opacity": 1,
-							    fillOpacity: 0.9
+							    fillOpacity: 1
 							};
 						}
 					}).addTo(map);
