@@ -30,20 +30,24 @@
 			Stamen_TonerLite.addTo(map);
 
 			var colorScale = d3.scale.linear()
-			    .domain([0,40])
-    			.range(colorbrewer.Oranges[5]);
+			    .domain([10,40])
+    			.range(colorbrewer.Reds[3]);
 
-			var myStyle = {
-			    "color": "#ff7800",
-			    "weight": 1,
-			    "opacity": 0.65
-			};
 			request.then(
 				// success handler
 				function(data, xhr) {
 					console.log('Loading geoJson data');
 					L.geoJson(data, {
-							style:myStyle
+						style: function (feature) {
+							var feature_color = colorScale(feature.properties.ActiveCount);
+							return {
+								color: feature_color,
+								fillColor: feature_color,
+							    "weight": 1,
+							    "opacity": 1,
+							    fillOpacity: 0.9
+							};
+						}
 					}).addTo(map);
 				},
 				// error handler
