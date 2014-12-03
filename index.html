@@ -3,7 +3,6 @@
 	<head>
 		<title>Rat Inspections</title>
 		<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
-		<script src="bower_components/pegasus/dist/pegasus.min.js"></script>
 		<style type="text/css" media="screen">
 			#map {
 				height: 800px;
@@ -13,20 +12,10 @@
 	<body>
 		<div id="map"></div>
 
-		<script>
-		  var request = pegasus('shapefiles/most_active.geojson');
-		</script>
 		<script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
-		<script src="http://d3js.org/d3.v3.min.js"></script>
-		<script src="http://d3js.org/colorbrewer.v1.min.js"></script>
+		<script src='//api.tiles.mapbox.com/mapbox.js/plugins/leaflet-omnivore/v0.2.0/leaflet-omnivore.min.js'></script>
 		<script>
 			var map = L.map('map').setView([40.74023, -73.96202], 12);
-			var Esri_WorldImagery = L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
-				attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community',
-					minZoom: 15,
-					maxZoom: 20
-			});
-			// Esri_WorldImagery.addTo(map);
 	    	var Stamen_TonerLite = L.tileLayer('http://{s}.tile.stamen.com/toner-lite/{z}/{x}/{y}.png', {
 				attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>',
 				subdomains: 'abcd',
@@ -44,28 +33,24 @@
 					return '#f03b20';
 			}
 
-			request.then(
-				// success handler
-				function(data, xhr) {
-					console.log('Loading geoJson data');
-					L.geoJson(data, {
-						style: function (feature) {
-							var feature_color = colorScale(feature.properties.ActiveCount);
-							return {
-								color: 'darkgray',
-								fillColor: feature_color,
-							    "weight": 1,
-							    "opacity": 1,
-							    fillOpacity: 0.75
-							};
-						}
-					}).addTo(map);
+			var customLayer = L.geoJson(null, {
+				// http://leafletjs.com/reference.html#geojson-style
+				style: function(feature) {
+					var feature_color = colorScale(feature.properties.ActiveCount);
+					return {
+						color: 'darkgray',
+						fillColor: feature_color,
+					    "weight": 1,
+					    "opacity": 1,
+					    fillOpacity: 0.75
+					};
 				},
-				// error handler
-				function(data, xhr) {
-					console.error(data, xhr.status);
+				onEachFeature: function (feature, layer) {
+					layer.bindPopup("<p>Active Count: "+feature.properties.ActiveCount+"</p>");
 				}
-			);
+			});
+
+			omnivore.topojson('shapefiles/most_active.topojson',null,customLayer).addTo(map);
 
 		</script>
 	</body>

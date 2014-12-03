@@ -23,6 +23,9 @@ Revised plan:  Get the PLUTO shape files for all of NYC.  Use ogr2ogr to convert
 
 ogr2ogr -f GeoJSON -t_srs EPSG:4326 manhattan.geojson MNMapPLUTO.shp
 
+topojson -o most_active.topojson -p ActiveCount,CT2010,CB2010,ZipCode,Address,LandUse,BldgClass,OwnerType,OwnerName,ComArea,ResArea,OfficeArea,RetailArea,GarageArea,StrgeArea,FactryArea,OtherArea,NumBldgs,NumFloors,UnitsRes,UnitsTotal,ProxCode,BsmtCode,AssessTot,YearBuilt,HistDist --id-property BBL -- most_active.geojson
+
+
 This diagram shows an overview of my data pipeline.  
 
 I built the pipeline in Python using Pandas since it has great support for this sort of file munging.  The resulting geoJson file is much smaller and includes all of the metadata needed for display.  The final step is some JavaScript code
