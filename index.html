@@ -14,6 +14,11 @@
 
 		<script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
 		<script src='//api.tiles.mapbox.com/mapbox.js/plugins/leaflet-omnivore/v0.2.0/leaflet-omnivore.min.js'></script>
+		<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+		<script src="http://d3js.org/queue.v1.min.js"></script>
+		<script src="//cdnjs.cloudflare.com/ajax/libs/handlebars.js/2.0.0/handlebars.runtime.min.js" charset="utf-8"></script>
+		<script src="popup_template.js"></script>
+
 		<script>
 			var map = L.map('map').setView([40.74023, -73.96202], 12);
 	    	var Stamen_TonerLite = L.tileLayer('http://{s}.tile.stamen.com/toner-lite/{z}/{x}/{y}.png', {
@@ -44,13 +49,37 @@
 					    "opacity": 1,
 					    fillOpacity: 0.75
 					};
-				},
-				onEachFeature: function (feature, layer) {
-					layer.bindPopup("<p>Active Count: "+feature.properties.ActiveCount+"</p>");
 				}
 			});
 
-			omnivore.topojson('shapefiles/most_active.topojson',null,customLayer).addTo(map);
+			var createPopups = function () {
+				queue()
+					.defer(d3.csv, "inspections_for_most_active.csv")
+					.defer(d3.csv, "nyc_building_codes.csv")
+					.await(ready)
+
+				function ready(error, inspections, building_codes) {
+
+					code_index = d3.nest()
+							.key(function(d) { return d.Code; })
+							.map(building_codes, d3.map);
+
+					inspection_index = d3.nest()
+							.key(function(d) { return d.BBL; })
+							.map(inspections, d3.map);
+
+					features.eachLayer(function (layer) {
+						var codeDesc = code_index.get(layer.feature.properties.BldgClass)[0].Description;
+						layer.bindPopup(Handlebars.templates.popup(layer.feature.properties));
+						// layer.bindPopup("<p><b>Active Count:</b> "+layer.feature.properties.ActiveCount+"</p><p>Building Code: "+codeDesc+"</p><p>"+
+						// 	inspection_index.get(layer.feature.id)[0].RESULT+"</p>");
+					});
+				}
+			}
+
+			var features = omnivore.topojson('shapefiles/most_active.topojson',null,customLayer).on('ready', createPopups);
+
+			features.addTo(map);
 
 		</script>
 	</body>
