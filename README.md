@@ -1,6 +1,6 @@
 # NYC Rat Inspections
 
-While putting together (ratgraph.nyc)[http://ratgraph.nyc], I noticed that the NYC department of health has another interesting data set about rats -- their rodent inspection results.  This data set includes inspections prompted by 311 complaints as well as pro-active inspections that are part of NYC's rat indexing program.
+While putting together [ratgraph.nyc](http://ratgraph.nyc), I noticed that the NYC department of health has another interesting data set about rats -- their rodent inspection results.  This data set includes inspections prompted by 311 complaints as well as pro-active inspections that are part of NYC's rat indexing program.
 
 They've created an interactive map which lets you browse the data, but the color coding only shows the results of the most recent inspection.  After doing some clicking around, I realized that this hides the fact that certain places are 'frequent offenders' with repeated visits by inspectors showing rat activity.
 
