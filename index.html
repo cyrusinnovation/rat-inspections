@@ -77,7 +77,7 @@
 				}
 			}
 
-			var features = omnivore.topojson('shapefiles/most_active.topojson',null,customLayer).on('ready', createPopups);
+			var features = omnivore.topojson('most_active.topojson',null,customLayer).on('ready', createPopups);
 
 			features.addTo(map);
 
