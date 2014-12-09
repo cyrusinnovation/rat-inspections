@@ -27,7 +27,7 @@ As this post mentions[http://geospatialpython.com/2011/09/map-projections.html],
 
 Revised plan:  Get the PLUTO shape files for all of NYC.  Use ogr2ogr to convert them to GeoJSON with EPSG 4326 coordinates.  Thanks to Mike Bostock for his excellent (Let's Make a Map)[http://bost.ocks.org/mike/map/] tutorial.  Then run the data processing pipeline.
 
-ogr2ogr -f GeoJSON -t_srs EPSG:4326 manhattan.geojson MNMapPLUTO.shp
+ogr2ogr -f GeoJSON -select Borough,ZipCode,Address,BldgClass,OwnerType,OwnerName,BldgArea,NumFloors,UnitsTotal,AssessTot,YearBuilt -t_srs EPSG:4326 manhattan.geojson MNMapPLUTO.shp
 
 topojson -o most_active.topojson -p Borough,ActiveCount,CT2010,CB2010,ZipCode,Address,LandUse,BldgClass,OwnerType,OwnerName,NumBldgs,BldgArea,NumFloors,UnitsTotal,AssessTot,YearBuilt,HistDist --id-property BBL -- ./map_data/most_active.geojson
 

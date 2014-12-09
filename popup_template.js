@@ -1,27 +1,27 @@
 (function() {
   var template = Handlebars.template, templates = Handlebars.templates = Handlebars.templates || {};
 templates['popup'] = template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
-  var helper, functionType="function", helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression;
+  var stack1, helper, lambda=this.lambda, escapeExpression=this.escapeExpression, functionType="function", helperMissing=helpers.helperMissing;
   return "<table>\n<caption>Summary for "
-    + escapeExpression(((helper = (helper = helpers.Address || (depth0 != null ? depth0.Address : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"Address","hash":{},"data":data}) : helper)))
+    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.properties : depth0)) != null ? stack1.Address : stack1), depth0))
     + "</caption>\n<tbody>\n	<tr>\n		<th>Active Count:</th><td>"
-    + escapeExpression(((helper = (helper = helpers.ActiveCount || (depth0 != null ? depth0.ActiveCount : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"ActiveCount","hash":{},"data":data}) : helper)))
+    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.properties : depth0)) != null ? stack1.ActiveCount : stack1), depth0))
     + "</td>\n	</tr>\n	<tr>\n		<th>Address:</th>\n		<td>\n			<address>\n			"
-    + escapeExpression(((helper = (helper = helpers.Address || (depth0 != null ? depth0.Address : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"Address","hash":{},"data":data}) : helper)))
+    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.properties : depth0)) != null ? stack1.Address : stack1), depth0))
     + "<br/>\n			"
-    + escapeExpression(((helper = (helper = helpers.Borough || (depth0 != null ? depth0.Borough : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"Borough","hash":{},"data":data}) : helper)))
+    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.properties : depth0)) != null ? stack1.Borough : stack1), depth0))
     + ", NY "
-    + escapeExpression(((helper = (helper = helpers.ZipCode || (depth0 != null ? depth0.ZipCode : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"ZipCode","hash":{},"data":data}) : helper)))
+    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.properties : depth0)) != null ? stack1.ZipCode : stack1), depth0))
     + "	\n			</address>\n		</td>\n	</tr>\n	<tr>\n		<th>Floors:</th><td>"
-    + escapeExpression(((helper = (helper = helpers.NumFloors || (depth0 != null ? depth0.NumFloors : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"NumFloors","hash":{},"data":data}) : helper)))
+    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.properties : depth0)) != null ? stack1.NumFloors : stack1), depth0))
     + "</td>\n	</tr>\n	<tr>\n		<th>Total Floor Area:</th><td>"
-    + escapeExpression(((helper = (helper = helpers.BldgArea || (depth0 != null ? depth0.BldgArea : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"BldgArea","hash":{},"data":data}) : helper)))
+    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.properties : depth0)) != null ? stack1.BldgArea : stack1), depth0))
     + "</td>\n	</tr>\n	<tr>\n		<th>Total Units:</th><td>"
-    + escapeExpression(((helper = (helper = helpers.UnitsTotal || (depth0 != null ? depth0.UnitsTotal : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"UnitsTotal","hash":{},"data":data}) : helper)))
+    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.properties : depth0)) != null ? stack1.UnitsTotal : stack1), depth0))
     + "</td>\n	</tr>\n	<tr>\n		<th>Building Class:</th><td>"
-    + escapeExpression(((helper = (helper = helpers.BldgClass || (depth0 != null ? depth0.BldgClass : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"BldgClass","hash":{},"data":data}) : helper)))
+    + escapeExpression(((helper = (helper = helpers.bldgDesc || (depth0 != null ? depth0.bldgDesc : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"bldgDesc","hash":{},"data":data}) : helper)))
     + "</td>\n	</tr>\n	<tr>\n		<th>Year Built:</th><td>"
-    + escapeExpression(((helper = (helper = helpers.YearBuilt || (depth0 != null ? depth0.YearBuilt : depth0)) != null ? helper : helperMissing),(typeof helper === functionType ? helper.call(depth0, {"name":"YearBuilt","hash":{},"data":data}) : helper)))
+    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.properties : depth0)) != null ? stack1.YearBuilt : stack1), depth0))
     + "</td>\n	</tr>\n</tbody>\n</table>\n";
 },"useData":true});
 })();

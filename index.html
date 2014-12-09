@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
 	<head>
-		<title>Rat Inspections</title>
+		<title>NYC Rat Inspections</title>
 		<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
 		<style type="text/css" media="screen">
 			#map {
@@ -70,14 +70,17 @@
 
 					features.eachLayer(function (layer) {
 						var codeDesc = code_index.get(layer.feature.properties.BldgClass)[0].Description;
-						layer.bindPopup(Handlebars.templates.popup(layer.feature.properties));
-						// layer.bindPopup("<p><b>Active Count:</b> "+layer.feature.properties.ActiveCount+"</p><p>Building Code: "+codeDesc+"</p><p>"+
+						var context = {
+							bldgDesc: codeDesc,
+							properties: layer.feature.properties
+						};
+						layer.bindPopup(Handlebars.templates.popup(context));
 						// 	inspection_index.get(layer.feature.id)[0].RESULT+"</p>");
 					});
 				}
 			}
 
-			var features = omnivore.topojson('most_active.topojson',null,customLayer).on('ready', createPopups);
+			var features = omnivore.geojson('most_active.geojson',null,customLayer).on('ready', createPopups);
 
 			features.addTo(map);
 
