@@ -9,7 +9,7 @@ templates['popup'] = template({"compiler":[6,">= 2.0.0-beta.1"],"main":function(
     + "</td>\n	</tr>\n	<tr>\n		<th>Address:</th>\n		<td>\n			<address>\n			"
     + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.properties : depth0)) != null ? stack1.Address : stack1), depth0))
     + "<br/>\n			"
-    + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.properties : depth0)) != null ? stack1.Borough : stack1), depth0))
+    + escapeExpression(helpers.lookup.call(depth0, (depth0 != null ? depth0.boroughLookup : depth0), ((stack1 = (depth0 != null ? depth0.properties : depth0)) != null ? stack1.Borough : stack1), {"name":"lookup","hash":{},"data":data}))
     + ", NY "
     + escapeExpression(lambda(((stack1 = (depth0 != null ? depth0.properties : depth0)) != null ? stack1.ZipCode : stack1), depth0))
     + "	\n			</address>\n		</td>\n	</tr>\n	<tr>\n		<th>Floors:</th><td>"

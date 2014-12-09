@@ -60,22 +60,25 @@
 
 				function ready(error, inspections, building_codes) {
 
-					code_index = d3.nest()
+					var code_index = d3.nest()
 							.key(function(d) { return d.Code; })
 							.map(building_codes, d3.map);
 
-					inspection_index = d3.nest()
+					var inspection_index = d3.nest()
 							.key(function(d) { return d.BBL; })
 							.map(inspections, d3.map);
 
+					var borough_index = {"MN":"Manhattan", "BK":"Brooklyn", "BX":"Bronx", "QN":"Queens", "SI":"Staten Island"};
+
 					features.eachLayer(function (layer) {
+						var inspections = inspection_index.get(layer.feature.id);
 						var codeDesc = code_index.get(layer.feature.properties.BldgClass)[0].Description;
 						var context = {
 							bldgDesc: codeDesc,
-							properties: layer.feature.properties
+							properties: layer.feature.properties,
+							boroughLookup: borough_index
 						};
 						layer.bindPopup(Handlebars.templates.popup(context));
-						// 	inspection_index.get(layer.feature.id)[0].RESULT+"</p>");
 					});
 				}
 			}

@@ -9,7 +9,7 @@
 		<td>
 			<address>
 			{{properties.Address}}<br/>
-			{{properties.Borough}}, NY {{properties.ZipCode}}	
+			{{lookup boroughLookup properties.Borough}}, NY {{properties.ZipCode}}	
 			</address>
 		</td>
 	</tr>
