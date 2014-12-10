@@ -14,12 +14,12 @@ For the visualization itself, I decided that there's not enough code and too man
 
 To run the tests, install Casper and Phantom per their getting started pages (for Mac folks, there are Homebrew formulas for each).  Then start a web server in the root directory of the project.  I like python's simple one:
 
-'''bash
+```bash
 python -m SimpleHTTPServer
-'''
+```
 
 Finally, run the tests:
 
-'''bash
+```bash
 casperjs test tests/map_test.js
-'''
+```
