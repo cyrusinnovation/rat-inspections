@@ -41,7 +41,7 @@ d3.timeline = function (selector, data) {
 	   .enter().append("circle")
 	    .attr("class", "inspection")
 	    .attr("cx", function(d) { return x(d.date); })
-	    .attr("cy", 0)
+	    .attr("cy", margin.top)
 	    .attr("r", 5)
 	    .attr("fill", function(d) { return colorScale(d.RESULT);})
 	    .attr("stroke", function(d) {  return d3.hsl(colorScale(d.RESULT)).darker(); });
