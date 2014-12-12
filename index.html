@@ -17,7 +17,7 @@
 		<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
 		<script src="http://d3js.org/queue.v1.min.js"></script>
 		<script src="//cdnjs.cloudflare.com/ajax/libs/handlebars.js/2.0.0/handlebars.runtime.min.js" charset="utf-8"></script>
-		<script src="popup_template.js"></script>
+		<script src="js/popup_template.js"></script>
 
 		<script>
 			var map = L.map('map').setView([40.74023, -73.96202], 12);
@@ -39,7 +39,6 @@
 			}
 
 			var customLayer = L.geoJson(null, {
-				// http://leafletjs.com/reference.html#geojson-style
 				style: function(feature) {
 					var feature_color = colorScale(feature.properties.ActiveCount);
 					return {
@@ -54,8 +53,8 @@
 
 			var createPopups = function () {
 				queue()
-					.defer(d3.csv, "inspections_for_most_active.csv")
-					.defer(d3.csv, "nyc_building_codes.csv")
+					.defer(d3.csv, "data/inspections_for_most_active.csv")
+					.defer(d3.csv, "data/nyc_building_codes.csv")
 					.await(ready)
 
 				function ready(error, inspections, building_codes) {
@@ -83,7 +82,7 @@
 				}
 			}
 
-			var features = omnivore.geojson('most_active.geojson',null,customLayer).on('ready', createPopups);
+			var features = omnivore.geojson('data/most_active.geojson',null,customLayer).on('ready', createPopups);
 
 			features.addTo(map);
 
