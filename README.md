@@ -1,4 +1,6 @@
-# NYC Rat Inspections
+For a live version of this visualization, please go to http://cyrusinnovation.github.io/rat-inspections/
+
+# About NYC Rat Inspections
 
 While putting together [ratgraph.nyc](http://ratgraph.nyc), I noticed that the NYC department of health has another interesting data set about rats -- their rodent inspection results.  This data set includes inspections prompted by 311 complaints as well as pro-active inspections that are part of NYC's rat indexing program.
 
